@@ -83,9 +83,10 @@ func main() {
     }
     fmt.Printf("%s\n", string(file))
 
-    //m := new(Dispatch)
-    //var m interface{}
+    var jsoninter interface{}
     var jsontype jsonobject
+    json.Unmarshal(file, &jsoninter)
     json.Unmarshal(file, &jsontype)
+    fmt.Printf("Interface Type: %v\n\n", jsoninter)
     fmt.Printf("Results: %v\n", jsontype)
 }
