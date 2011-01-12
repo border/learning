@@ -12,6 +12,4 @@ format:
 clean:
 	rm -rf *.8 *.o *.out *.6
 
-# run :go-proxy
-# 	./go-proxy
 
