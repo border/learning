@@ -33,5 +33,7 @@ func main() {
 
     fmt.Println(foundDoc.Title + "::" + foundDoc.Body)
 
+    fmt.Printf("Comment %v\n", foundDoc)
+
     coll.Drop()
 }

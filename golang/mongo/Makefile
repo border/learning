@@ -9,7 +9,6 @@ all:
 	$(LD) -o mongomap.out  mongomap.$O
 	$(LD) -o mongotyped.out  mongotyped.$O
 	$(LD) -o mongofind.out  mongofind.$O
-	
 
 format:
 	$(GOFMT) -w mongomap.go
@@ -19,7 +18,4 @@ format:
 
 clean:
 	rm -rf *.8 *.o *.out *.6
-
-# run :go-proxy
-# 	./go-proxy
 
