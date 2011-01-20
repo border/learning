@@ -1,6 +1,7 @@
 package main
 
-import ("./filestuts")
+import ("./filestuts"
+        "fmt")
 
 func main() {
     file := &filestuts.File{1, "String"}

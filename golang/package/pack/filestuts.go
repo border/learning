@@ -3,8 +3,8 @@ package filestuts
 import "os"
 import "syscall"
 type File struct {
-    fd int
-    name string
+    Fd int
+    Name string
 }
 func newFile(fd int, name string) *File{
     if fd < 0 {
@@ -12,7 +12,7 @@ func newFile(fd int, name string) *File{
     }
     return &File{fd, name}
 }
-func open(name string, mode int, perm uint32)(file *File, err os.Errno) {
+func Open(name string, mode int, perm uint32)(file *File, err os.Errno) {
     r,e := syscall.Open(name, mode, perm)
     if e != 0 {
         err = os.Errno(e)
@@ -24,8 +24,8 @@ func (file *File) Close() os.Error{
     if file == nil {
         return os.EINVAL
     }
-    e := syscall.Close(file.fd)
-    file.fd = -1
+    e := syscall.Close(file.Fd)
+    file.Fd = -1
     if e != 0 {
         return os.Errno(e)
     }
@@ -35,7 +35,7 @@ func (file *File) Read(b []byte) (ret int, err os.Error) {
     if file == nil {
         return -1, os.EINVAL
     }
-    r, e := syscall.Read(file.fd, b)
+    r, e := syscall.Read(file.Fd, b)
     if e != 0 {
         err = os.Errno(e)
     }
@@ -45,12 +45,12 @@ func (file *File) Write(b []byte) (ret int, err os.Error) {
     if file == nil {
         return -1, os.EINVAL
     }
-    r, e := syscall.Write(file.fd, b)
+    r, e := syscall.Write(file.Fd, b)
     if e != 0 {
         err = os.Errno(e)
     }
     return int(r), err
 }
 func (file *File) String() string {
-    return file.name
+    return file.Name
 }

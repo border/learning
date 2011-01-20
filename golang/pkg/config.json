@@ -1,4 +1,4 @@
-{"object": 
+jsonFlickrApi({"object": 
     {
        "buffer_size": 10,
        "Databases":
@@ -27,5 +27,4 @@
                }
        ]
     }
-}
-
+})

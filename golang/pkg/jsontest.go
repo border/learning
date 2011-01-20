@@ -72,8 +72,18 @@ type TypesType struct {
     Value string
 }
 
+const FlickrJson = "jsonFlickrApi"
+
 // Main function
 // I realize this function is much too simple I am simply at a loss to
+
+func GetFlickrJson(src []byte) (ret []byte) {
+        start := len(FlickrJson)
+        length := len(src);
+        fmt.Printf("Start: %d\n", start)
+        fmt.Printf("Length: %d\n", length)
+        return src[start+1:length-2] 
+}
 
 func main() {
     file, e := ioutil.ReadFile("./config.json")
@@ -81,12 +91,14 @@ func main() {
         fmt.Printf("File error: %v\n", e)
         os.Exit(1)
     }
-    fmt.Printf("%s\n", string(file))
-
+    fmt.Printf("File Size: %d\n", len(file))
+    jsonarr := GetFlickrJson(file)
+    fmt.Printf("Json Size: %d\n", len(jsonarr))
+    fmt.Printf("%s\n", string(jsonarr))
     var jsoninter interface{}
     var jsontype jsonobject
-    json.Unmarshal(file, &jsoninter)
-    json.Unmarshal(file, &jsontype)
+    json.Unmarshal(jsonarr, &jsoninter)
+    json.Unmarshal(jsonarr, &jsontype)
     fmt.Printf("Interface Type: %v\n\n", jsoninter)
     fmt.Printf("Results: %v\n", jsontype)
 }
